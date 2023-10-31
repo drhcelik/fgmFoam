@@ -1,0 +1,19 @@
+#!/bin/sh
+cd ${0%/*} || exit 1                        # Run from this directory
+. $WM_PROJECT_DIR/bin/tools/RunFunctions    # Tutorial run functions
+
+#update tablePath in constant/(PV)tableProperties to the table directory
+
+foamCleanTutorials
+rm -rf *log.* 0.1_raw
+
+runApplication blockMesh
+runApplication $(getApplication)
+
+#run FGSFoam postProcessing after copying last time step
+if [ -r 0.1 ]; then
+   cp -r 0.1 0.1_raw
+   runApplication FGSFoamPost -latestTime
+fi
+
+#------------------------------------------------------------------------------

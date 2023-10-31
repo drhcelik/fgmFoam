@@ -1,0 +1,22 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+makeType=${1:-libso}
+set -x
+
+wclean ./thermophysicalModels/reactionThermo
+wclean ./thermophysicalModels/chemistryModel
+wclean ./thermophysicalModels/solidThermo
+wclean ./thermophysicalModels/solidChemistryModel
+
+wclean ./TurbulenceModels/turbulenceModels
+wclean ./TurbulenceModels/compressible
+
+wclean ./combustionModels
+
+wclean ./fvOptions
+
+wclean ../applications/utilities/FGSFoamPost/
+wclean ../applications/solver/FGSFoam/
+rm -rf $FOAM_USER_APPBIN/FGSFoam
+
+# ----------------------------------------------------------------- end-of-file

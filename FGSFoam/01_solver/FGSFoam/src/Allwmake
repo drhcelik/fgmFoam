@@ -1,0 +1,21 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+makeType=${1:-libso}
+set -x
+
+wmake $makeType ./thermophysicalModels/reactionThermo
+wmake $makeType ./thermophysicalModels/chemistryModel
+wmake $makeType ./thermophysicalModels/solidThermo
+wmake $makeType ./thermophysicalModels/solidChemistryModel
+
+wmake $makeType ./TurbulenceModels/turbulenceModels
+wmake $makeType ./TurbulenceModels/compressible
+
+wmake $makeType ./combustionModels
+
+wmake $makeType ./fvOptions
+
+wmake ../applications/solver/FGSFoam/
+#wmake ../applications/utilities/FGSFoamPost/
+
+# ----------------------------------------------------------------- end-of-file

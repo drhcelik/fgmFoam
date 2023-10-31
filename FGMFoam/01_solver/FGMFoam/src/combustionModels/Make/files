@@ -1,0 +1,14 @@
+combustionModel/combustionModel.C
+CombustionModel/CombustionModel/CombustionModels.C
+
+FGMTable/linearInterpolation/linearInterpolation.C
+FGMTable/FGMTable/FGMTable.C
+FGMTable/tableSolver/tableSolver.C
+
+FGMTable/PVlinearInterpolation/PVlinearInterpolation.C
+FGMTable/PVTable/PVTable.C
+FGMTable/PVtableSolver/PVtableSolver.C
+
+FGMModel/FGMModels.C
+
+LIB = $(FOAM_USER_LIBBIN)/libFGMFoamCombustionModels
